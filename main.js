@@ -23,6 +23,7 @@ app.use('/people', require('./people.js'));
 
 //for Marvel DB
 app.use('/characters', require('./characters.js'));
+app.use('/characters-new', require('./characters-new.js'));
 app.use('/planets', require('./planets.js'));
 app.use('/movies', require('./movies.js'));
 app.use('/organizations', require('./organizations.js'));
