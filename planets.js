@@ -3,7 +3,8 @@ module.exports = function(){
     var router = express.Router();
 
     function servePlanets(req, res){
-        var query = `SELECT NAME FROM Planets`;
+        var query = `SELECT NAME FROM Planets
+                     ORDER BY Planets.Name`;
         var mysql = req.app.get('mysql');
         var context = {};
 

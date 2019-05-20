@@ -5,7 +5,8 @@ module.exports = function(){
     function serveOrganizations(req, res){
         var query = `SELECT Organizations.Name AS "OrganizationName", Characters.Name AS "Leader"
                      FROM Organizations 
-                     INNER JOIN Characters ON Organizations.Leader = Characters.ID`
+                     INNER JOIN Characters ON Organizations.Leader = Characters.ID
+                     ORDER BY Organizations.Name`
         var mysql = req.app.get('mysql');
         var context = {};
 

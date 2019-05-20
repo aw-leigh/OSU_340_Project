@@ -6,7 +6,8 @@ module.exports = function(){
         //date formatting reference - http://www-db.deis.unibo.it/courses/TW/DOCS/w3schools/sql/func_date_format.asp.html
         var query = `SELECT Movies.Name AS "MovieName", 
                      DATE_FORMAT(Movies.Release_Date, '%M %e, %Y') AS "ReleaseDate",
-                     Movies.Phase FROM Movies`
+                     Movies.Phase FROM Movies
+                     ORDER BY Movies.Release_Date`
         var mysql = req.app.get('mysql');
         var context = {};
 

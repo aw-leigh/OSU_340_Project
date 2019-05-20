@@ -25,8 +25,11 @@ app.use('/people', require('./people.js'));
 app.use('/characters', require('./characters.js'));
 app.use('/characters-new', require('./characters-new.js'));
 app.use('/planets', require('./planets.js'));
+app.use('/planets-new', require('./planets-new.js'));
 app.use('/movies', require('./movies.js'));
+app.use('/movies-new', require('./movies-new.js'));
 app.use('/organizations', require('./organizations.js'));
+app.use('/organizations-new', require('./organizations-new.js'));
 app.use('/', express.static('public'));
 
 app.use(function(req,res){
