@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,19 +17,19 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-			<a class="nav-link" href="./">Home</a>
+			<a class="nav-link" href="../">Home</a>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link" href="./characters">Characters</a>
+			<a class="nav-link" href="../characters">Characters</a>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link" href="./movies">Movies</a>
+			<a class="nav-link" href="../movies">Movies</a>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link" href="./planets">Planets</a>
+			<a class="nav-link" href="../planets">Planets</a>
 			</li>
 			<li class="nav-item active">
-			<a class="nav-link" href="./organizations">Organizations</a>
+			<a class="nav-link" href="../organizations">Organizations</a>
 			</li>			
 		</ul>
 		</div>
@@ -50,13 +50,18 @@
 							<tr>
 								<th>Name</th>
 								<th>Leader</th>
+								<th style="width:135px"></th> {{!-- This puts the edit and delete buttons into their own fixed-width column --}}
 							</tr>
 						</thead>
 						<tbody>
               {{#each organizations}}
                 <tr>
                   <td>{{OrganizationName}}</td>
-                  <td>{{Leader}}</td>								
+                  <td>{{Leader}}</td>	
+                  <td>
+										<a href='../organizations/{{ID}}' class="btn btn-primary btn-sm">Edit</a>
+                  	<a href='' class="btn btn-danger btn-sm" style="margin-left: 5px">Delete</a>
+									</td>																		
                 </tr>
               {{/each}}
 						</tbody>

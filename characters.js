@@ -3,7 +3,7 @@ module.exports = function(){
     var router = express.Router();
 
     function serveCharacters(req, res){
-        var query = `SELECT Characters.Name, Characters.Race, Characters.Alignment, Planets.Name AS "PlanetName"
+        var query = `SELECT Characters.ID, Characters.Name, Characters.Race, Characters.Alignment, Planets.Name AS "PlanetName"
                     FROM Characters 
                     INNER JOIN Planets ON Characters.Planet = Planets.ID
                     ORDER BY Characters.Name`
@@ -14,7 +14,7 @@ module.exports = function(){
         mysql.pool.query(query, (error, results) =>{
           console.log(error)
           console.log(results)
-          //take the results of that query and store ti inside context
+          //take the results of that query and store it inside context
           context.characters = results;
 
           //pass it to handlebars to put inside a file
@@ -24,6 +24,69 @@ module.exports = function(){
         //res.send('Here you go!');
     }
 
+    function getCharacter(res, mysql, context, id, complete){
+      var sql = "SELECT ID as id, Name, Race, Alignment, Planet FROM Characters WHERE ID= ?";
+      var inserts = [id];
+      mysql.pool.query(sql, inserts, function(error, results, fields){
+          if(error){
+              res.write(JSON.stringify(error));
+              res.end();
+          }
+          context.character = results[0];
+          complete();
+      });
+    }
+
+    function getPlanets(res, mysql, context, complete){
+      mysql.pool.query("SELECT NAME, ID FROM Planets", function(error, results, fields){
+          if(error){
+              res.write(JSON.stringify(error));
+              res.end();
+          }
+          context.planets = results;
+          complete();
+      });
+    }
+
     router.get('/', serveCharacters);
+
+    /* Display one character for the specific purpose of updating characters */
+
+    router.get('/:id', function(req, res){
+      callbackCount = 0;
+      var context = {};
+      context.jsscripts = ["selectedplanet.js", "selectedAlignment.js", "updateCharacter.js"];
+      var mysql = req.app.get('mysql');
+      getCharacter(res, mysql, context, req.params.id, complete);
+      getPlanets(res, mysql, context, complete);
+      function complete(){
+          callbackCount++;
+          if(callbackCount >= 2){
+              res.render('characters-update', context);
+          }
+      }
+    });
+
+
+    /* The URL that update data is sent to in order to update a character */
+
+    router.put('/:id', function(req, res){
+      var mysql = req.app.get('mysql');
+      console.log(req.body)
+      console.log(req.params.id)
+      var sql = "UPDATE Characters SET Name=?, Race=?, Alignment=?, Planet=? WHERE id=?";
+      var inserts = [req.body.name, req.body.race, req.body.alignment, req.body.homeplanet, req.params.id];
+      sql = mysql.pool.query(sql,inserts,function(error, results, fields){
+          if(error){
+              console.log(error)
+              res.write(JSON.stringify(error));
+              res.end();
+          }else{
+              res.status(200);
+              res.end();
+          }
+      });
+    });
+
     return router;
 }();
