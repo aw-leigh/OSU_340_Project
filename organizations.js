@@ -51,6 +51,11 @@ module.exports = function(){
 
     router.get('/', serveOrganizations);
 
+
+/*************
+ *  UPDATE
+**************/
+
     router.get('/:id', function(req, res){
       callbackCount = 0;
       var context = {};
@@ -83,6 +88,25 @@ module.exports = function(){
           }
       });
     });
+
+/*************
+ *  DELETE
+**************/
+
+router.get('/delete/:id', function(req, res){
+    let response = {};
+    var mysql = req.app.get('mysql');
+    let query = `DELETE FROM Organizations WHERE id=?`;   
+    mysql.pool.query(query, [req.params.id], function(err, result){
+      if(err){
+        next(err);
+        return;
+      }
+      console.log(result.changedRows);
+      response.deleted = result.changedRows;
+      res.redirect('/organizations')
+    })
+}); 
 
     return router;
 

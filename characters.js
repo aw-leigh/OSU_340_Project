@@ -50,7 +50,9 @@ module.exports = function(){
 
     router.get('/', serveCharacters);
 
-    /* Display one character for the specific purpose of updating characters */
+/*************
+ *  UPDATE
+**************/
 
     router.get('/:id', function(req, res){
       callbackCount = 0;
@@ -87,6 +89,25 @@ module.exports = function(){
           }
       });
     });
+
+/*************
+ *  DELETE
+**************/
+
+router.get('/delete/:id', function(req, res){
+    let response = {};
+    var mysql = req.app.get('mysql');
+    let query = `DELETE FROM Characters WHERE id=?`;   
+    mysql.pool.query(query, [req.params.id], function(err, result){
+      if(err){
+        next(err);
+        return;
+      }
+      console.log(result.changedRows);
+      response.deleted = result.changedRows;
+      res.redirect('/characters')
+    })
+});   
 
     return router;
 }();
