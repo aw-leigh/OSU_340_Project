@@ -27,5 +27,29 @@ module.exports = function(){
 
     router.get('/', serveCharactersMovies);
 
+
+/*************
+ *  DELETE
+**************/
+
+router.get('/delete', function(req, res){
+  console.log(req.query);
+  console.log(req.query.charid);
+  console.log(req.query.movieid);
+ 
+  let response = {};
+  var mysql = req.app.get('mysql');
+  let query = `DELETE FROM Characters_Movies WHERE char_id=? AND movie_id=?`;   
+  mysql.pool.query(query, [req.query.charid, req.query.movieid], function(err, result){
+    if(err){
+      res.status(500);
+      res.render('500', {layout: 'error.handlebars'});
+      return;
+    }
+    console.log("deleted");
+    res.redirect('/characters-movies')
+  })
+});   
+
     return router;
 }();
