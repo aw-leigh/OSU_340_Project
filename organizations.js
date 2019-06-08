@@ -99,7 +99,8 @@ router.get('/delete/:id', function(req, res){
     let query = `DELETE FROM Organizations WHERE id=?`;   
     mysql.pool.query(query, [req.params.id], function(err, result){
       if(err){
-        next(err);
+        res.status(500);
+        res.render('500', {layout: 'error.handlebars'});
         return;
       }
       console.log(result.changedRows);

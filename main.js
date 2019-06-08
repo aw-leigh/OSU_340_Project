@@ -24,6 +24,8 @@ app.use('/people', require('./people.js'));
 //for Marvel DB
 app.use('/characters', require('./characters.js'));
 app.use('/characters-new', require('./characters-new.js'));
+app.use('/characters-movies', require('./characters-movies.js'));
+app.use('/characters-movies-new', require('./characters-movies-new.js'));
 app.use('/planets', require('./planets.js'));
 app.use('/planets-new', require('./planets-new.js'));
 app.use('/movies', require('./movies.js'));
@@ -34,13 +36,13 @@ app.use('/', express.static('public'));
 
 app.use(function(req,res){
   res.status(404);
-  res.render('404');
+  res.render('404', {layout: 'error.handlebars'});
 });
 
 app.use(function(err, req, res, next){
   console.error(err.stack);
   res.status(500);
-  res.render('500');
+  res.render('500', {layout: 'error.handlebars'});
 });
 
 app.listen(app.get('port'), function(){

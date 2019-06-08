@@ -28,36 +28,28 @@
 			<div class="col-lg-12">
 				<div id="characters-table">
 		
-					<h1>Characters</h1>
+					<h1>Characters - Movies</h1>
 					<br>
-					<a href='../characters-new' class="btn btn-primary btn-md">Add a new character</a>
-					<a href='../characters-movies' class="btn btn-primary btn-md">View characters in movies</a>
-
+					<a href='../characters-movies-new' class="btn btn-primary btn-md">Add a new character-movie pair</a>
 					<br>
-
 					<br>
 		
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>Name</th>
-								<th>Race</th>
-								<th>Home Planet</th>
-								<th>Alignment</th>
+								<th>Character</th>
+								<th>Movie</th>
 								<th style="width:135px"></th> {{!-- This puts the edit and delete buttons into their own fixed-width column --}}
 								</tr>
 						</thead>
 						<tbody>
-              {{#each characters}}
+              {{#each charactersMovies}}
                 <tr>
-                  <td>{{Name}}</td>
-                  <td>{{Race}}</td>
-                  <td>{{PlanetName}}</td>
-                  <td>{{Alignment}}</td>									
-                  <td>
-										<a href='../characters/{{ID}}' class="btn btn-primary btn-sm">Edit</a>
-                  	<a href='../characters/delete/{{ID}}' class="btn btn-danger btn-sm" style="margin-left: 5px">Delete</a>
-									</td>									
+					<td>{{CHARNAME}}</td>
+					<td>{{MOVIENAME}}</td>							
+					<td>
+						<a href='../characters-movies/delete/charid={{CHARID}}&movieid={{MOVIEID}}' class="btn btn-danger btn-sm" style="margin-left: 5px">Delete</a>
+					</td>									
                 </tr>
               {{/each}}
 						</tbody>

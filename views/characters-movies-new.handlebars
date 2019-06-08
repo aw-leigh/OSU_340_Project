@@ -8,7 +8,7 @@
 			<li class="nav-item">
 			<a class="nav-link" href="../">Home</a>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item active">
 			<a class="nav-link" href="../characters">Characters</a>
 			</li>
 			<li class="nav-item">
@@ -17,7 +17,7 @@
 			<li class="nav-item">
 			<a class="nav-link" href="../planets">Planets</a>
 			</li>
-			<li class="nav-item active">
+			<li class="nav-item">
 			<a class="nav-link" href="../organizations">Organizations</a>
 			</li>			
 		</ul>
@@ -25,36 +25,41 @@
 	</nav>    
 
 	<div class="container">
-			<div class="col-lg-12">
-				<div id="organizations-table">
-		
-					<h1>Organizations</h1>
-					<br>
-					<a href='../organizations-new' class="btn btn-primary btn-md">Add a new organization</a>
-					<br>
-					<br>
-		
-					<table class="table table-striped">
+		<div class="col-lg-12">
+			<div id="character-form">
+				<h1>Add a Character-Movie pair</h1>
+
+				<form action="/characters-movies-new" method="post" class="form-group">
+					<table>
 						<thead>
 							<tr>
-								<th>Name</th>
-								<th>Leader</th>
-								<th style="width:135px"></th> {{!-- This puts the edit and delete buttons into their own fixed-width column --}}
+								<th>Character</th>
+								<th>Movie</th>
 							</tr>
 						</thead>
 						<tbody>
-              {{#each organizations}}
-                <tr>
-                  <td>{{OrganizationName}}</td>
-                  <td>{{Leader}}</td>	
-                  <td>
-										<a href='../organizations/{{ID}}' class="btn btn-primary btn-sm">Edit</a>
-                  	<a href='../organizations/delete/{{ID}}' class="btn btn-danger btn-sm" style="margin-left: 5px">Delete</a>
-									</td>																		
-                </tr>
-              {{/each}}
+							<tr>
+								<td>						
+									<select name="character">
+									{{#each characters}}
+									<option value="{{CHARID}}">{{CHARNAME}}</option>
+									{{/each}}
+									</select>
+								</td>
+								<td>						
+									<select name="movie">
+									{{#each movies}}
+									<option value="{{MOVIEID}}">{{MOVIENAME}}</option>
+									{{/each}}
+									</select>
+								</td>
+							</tr>
 						</tbody>
 					</table>
-				</div>
+
+					<br>
+					<button class="btn btn-primary" type="submit" value="Submit">Submit</button>
+				</form>
 			</div>
 		</div>
+	</div>
