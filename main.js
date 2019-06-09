@@ -17,10 +17,6 @@ app.set('view engine', 'handlebars');
 app.set('port', process.argv[2]);
 app.set('mysql', mysql);
 
-//bsg samples, remove later
-app.use('/people_certs', require('./people_certs.js'));
-app.use('/people', require('./people.js'));
-
 //for Marvel DB
 app.use('/characters', require('./characters.js'));
 app.use('/characters-new', require('./characters-new.js'));

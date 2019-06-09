@@ -110,5 +110,33 @@ router.get('/delete/:id', function(req, res){
     })
 });   
 
+/*************
+ *  FILTER
+**************/
+
+router.get('/filter/:name', function(req, res){
+  console.log(req.params.name)
+  if(req.params.name == ''){
+    res.redirect('/characters')
+  }
+
+  let context = {};
+  var mysql = req.app.get('mysql');
+  let query = `SELECT Characters.ID, Characters.Name, Characters.Race, Characters.Alignment, Planets.Name AS "PlanetName"
+              FROM Characters 
+              INNER JOIN Planets ON Characters.Planet = Planets.ID
+              WHERE Characters.Name LIKE` + mysql.pool.escape('%'+ req.params.name + '%');  
+  mysql.pool.query(query, function(err, result){
+    if(err){
+      console.log(err);
+      res.status(500);
+      res.render('500', {layout: 'error.handlebars'});
+      return;
+    }
+    context.characters = result;
+    res.render('characters', context)
+  })
+});   
+
     return router;
 }();

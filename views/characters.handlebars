@@ -1,3 +1,4 @@
+<script src="/static/filterCharacters.js"></script>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -6,19 +7,19 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-			<a class="nav-link" href="../">Home</a>
+			<a class="nav-link" href="/">Home</a>
 			</li>
 			<li class="nav-item active">
-			<a class="nav-link" href="../characters">Characters</a>
+			<a class="nav-link" href="/characters">Characters</a>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link" href="../movies">Movies</a>
+			<a class="nav-link" href="/movies">Movies</a>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link" href="../planets">Planets</a>
+			<a class="nav-link" href="/planets">Planets</a>
 			</li>
 			<li class="nav-item">
-			<a class="nav-link" href="../organizations">Organizations</a>
+			<a class="nav-link" href="/organizations">Organizations</a>
 			</li>			
 		</ul>
 		</div>
@@ -32,8 +33,19 @@
 					<br>
 					<a href='../characters-new' class="btn btn-primary btn-md">Add a new character</a>
 					<a href='../characters-movies' class="btn btn-primary btn-md">View characters in movies</a>
-
 					<br>
+					<br>
+
+					<form id="filter-characters">
+						<div class="form-row">
+							<div class="col-3">
+								<input type="text" id="filter-characters-text" class="form-control" placeholder="Filter by name..." required>
+							</div>
+							<div class="col-2">
+								<input type="button" class="btn btn-primary btn-md" value="Filter" onclick="filterByName()">
+							</div>
+						</div>
+					</form>
 
 					<br>
 		
