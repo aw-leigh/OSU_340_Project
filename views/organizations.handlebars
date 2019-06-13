@@ -26,35 +26,36 @@
 
 	<div class="container">
 			<div class="col-lg-12">
-				<div id="organizations-table">
-		
-					<h1>Organizations</h1>
-					<br>
-					<a href='../organizations-new' class="btn btn-primary btn-md">Add a new organization</a>
-					<br>
-					<br>
-		
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Leader</th>
-								<th style="width:135px"></th> {{!-- This puts the edit and delete buttons into their own fixed-width column --}}
-							</tr>
-						</thead>
-						<tbody>
-              {{#each organizations}}
-                <tr>
-                  <td>{{OrganizationName}}</td>
-                  <td>{{Leader}}</td>	
-                  <td>
-										<a href='../organizations/{{ID}}' class="btn btn-primary btn-sm">Edit</a>
-                  	<a href='../organizations/delete/{{ID}}' class="btn btn-danger btn-sm" style="margin-left: 5px">Delete</a>
-									</td>																		
-                </tr>
-              {{/each}}
-						</tbody>
-					</table>
-				</div>
+                <div id="organizations-table">
+
+                    <h1>Organizations</h1>
+                    <br>
+                    <a href='../organizations-new' class="btn btn-primary btn-md">Add a new organization</a>
+                    <a href='../characters-organizations' class="btn btn-primary btn-md">View characters in organizations</a>
+                    <br>
+                    <br>
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Leader</th>
+                                <th style="width:135px"></th> {{!-- This puts the edit and delete buttons into their own fixed-width column --}}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each organizations}}
+                            <tr>
+                                <td>{{OrganizationName}}</td>
+                                <td>{{Leader}}</td>
+                                <td>
+                                    <a href='../organizations/{{ID}}' class="btn btn-primary btn-sm">Edit</a>
+                                    <a href='../organizations/delete/{{ID}}' class="btn btn-danger btn-sm" style="margin-left: 5px">Delete</a>
+                                </td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
 			</div>
 		</div>
