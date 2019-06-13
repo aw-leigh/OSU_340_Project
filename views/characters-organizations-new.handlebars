@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+			<a class="nav-link" href="/">Home</a>
+			</li>
+			<li class="nav-item active">
+			<a class="nav-link" href="/characters">Characters</a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="/movies">Movies</a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="/planets">Planets</a>
+			</li>
+			<li class="nav-item">
+			<a class="nav-link" href="/organizations">Organizations</a>
+			</li>			
+		</ul>
+		</div>
+	</nav>    
+
+	<div class="container">
+		<div class="col-lg-12">
+			<div id="character-form">
+				<h1>Add a Character-Organization pair</h1>
+
+				<form action="/characters-organizations-new" method="post" class="form-group">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Character</th>
+								<th>Organization</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>						
+									<select name="character">
+									{{#each characters}}
+									<option value="{{CHARID}}">{{CHARNAME}}</option>
+									{{/each}}
+									</select>
+								</td>
+								<td>						
+									<select name="organizations">
+									{{#each organizations}}
+									<option value="{{ORGID}}">{{ORGNAME}}</option>
+									{{/each}}
+									</select>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<br>
+					<button class="btn btn-primary" type="submit" value="Submit">Submit</button>
+				</form>
+			</div>
+		</div>
+	</div>

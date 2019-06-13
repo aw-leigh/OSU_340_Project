@@ -22,6 +22,8 @@ app.use('/characters', require('./characters.js'));
 app.use('/characters-new', require('./characters-new.js'));
 app.use('/characters-movies', require('./characters-movies.js'));
 app.use('/characters-movies-new', require('./characters-movies-new.js'));
+app.use('/characters-organizations', require('./characters-organizations.js'));
+app.use('/characters-organizations-new', require('./characters-organizations-new.js'));
 app.use('/planets', require('./planets.js'));
 app.use('/planets-new', require('./planets-new.js'));
 app.use('/movies', require('./movies.js'));
